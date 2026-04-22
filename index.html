@@ -3,349 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Pagos - Gladiadores de Cristo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <title>Inscripciones Gladiadores</title>
     <style>
-        :root {
-            --primary-gold: #B8860B;
-            --primary-red: #8B0000;
-            --text-dark: #2c3e50;
-            --bg-light: #f4f7f6;
-        }
-        body { 
-            font-family: 'Roboto', sans-serif; 
-            background-color: var(--bg-light);
-            background-image: linear-gradient(to bottom, #1a1a1a 0%, var(--bg-light) 100%);
-            padding: 20px; 
-            margin: 0; 
-            color: var(--text-dark); 
-        }
-        .container { 
-            max-width: 600px; 
-            margin: 30px auto; 
-            background: white; 
-            padding: 40px; 
-            border-radius: 15px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
-            border-top: 5px solid var(--primary-gold); 
-        }
-        .logo-container {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .logo-container img {
-            max-width: 180px;
-            height: auto;
-            filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.3));
-        }
-        h2 { 
-            text-align: center; 
-            color: var(--primary-gold); 
-            font-family: 'Cinzel', serif; 
-            font-weight: 700;
-            margin-bottom: 30px; 
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        /* Estilos para la lista de aportes */
-        .lista-confirmados { 
-            background: #fffdf5; 
-            border: 1px solid rgba(184, 134, 11, 0.3); 
-            border-radius: 10px; 
-            padding: 20px; 
-            margin-bottom: 35px; 
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
-        }
-        .lista-confirmados h4 { 
-            margin: 0 0 15px 0; 
-            color: var(--primary-red); 
-            text-align: center; 
-            font-family: 'Cinzel', serif; 
-            font-size: 18px;
-            text-transform: uppercase;
-        }
-        .lista-confirmados ul { 
-            list-style-type: none; 
-            padding: 0; 
-            margin: 0; 
-            max-height: 180px; 
-            overflow-y: auto; 
-        }
-        .lista-confirmados li { 
-            padding: 10px 8px; 
-            border-bottom: 1px solid #eee; 
-            display: flex; 
-            align-items: center; 
-            font-weight: 500;
-            font-size: 15px;
-        }
-        .lista-confirmados li:last-child { border-bottom: none; }
-        .lista-confirmados li::before { content: "🛡️"; margin-right: 12px; font-size: 18px;}
-        .badge-count { 
-            background: var(--primary-gold); 
-            color: white; 
-            padding: 4px 10px; 
-            border-radius: 12px; 
-            font-size: 14px; 
-            float: right; 
-            font-family: 'Roboto', sans-serif;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .section-title {
-            font-family: 'Cinzel', serif;
-            color: var(--primary-red);
-            font-size: 18px;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 8px;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        label { font-weight: 500; display: block; margin-top: 15px; color: var(--text-dark);}
-        input[type="text"], input[type="number"], select, input[type="file"] { 
-            width: 100%; 
-            padding: 12px; 
-            margin-top: 8px; 
-            border: 1px solid #ccc; 
-            border-radius: 8px; 
-            box-sizing: border-box; 
-            font-size: 16px; 
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-        input:focus, select:focus {
-            border-color: var(--primary-gold);
-            outline: none;
-        }
-        .radio-group { margin-top: 12px; display: flex; gap: 20px; }
-        .radio-group label { display: flex; align-items: center; cursor: pointer; margin:0;}
-        input[type="radio"] { margin-right: 8px; accent-color: var(--primary-gold); }
-        
-        .qr-box { 
-            text-align: center; 
-            margin-top: 20px; 
-            padding: 25px; 
-            background: #fff; 
-            border-radius: 12px; 
-            border: 2px dashed var(--primary-gold); 
-            background-image: linear-gradient(to bottom, #ffffff, #fffdf5);
-        }
-        .qr-box img { 
-            max-width: 220px; 
-            height: auto; 
-            border-radius: 12px; 
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
-            margin-top: 15px;
-            border: 4px solid white;
-        }
-        
-        button { 
-            width: 100%; 
-            padding: 16px; 
-            background: linear-gradient(to right, var(--primary-red), #A52A2A); 
-            color: white; 
-            border: none; 
-            border-radius: 8px; 
-            margin-top: 35px; 
-            cursor: pointer; 
-            font-size: 18px; 
-            font-family: 'Cinzel', serif; 
-            font-weight: bold; 
-            letter-spacing: 1px;
-            transition: transform 0.2s, box-shadow 0.2s; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        button:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        button:disabled { background: #bdc3c7; cursor: not-allowed; transform: none; box-shadow: none;}
-        #mensaje { text-align: center; margin-top: 20px; font-weight: bold; padding: 15px; border-radius: 8px; display: none;}
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+        .tarjeta-evento { border: 1px solid #ccc; padding: 20px; border-radius: 10px; margin-top: 20px; display: none; }
+        .qr-imagen { max-width: 250px; margin: 15px 0; border-radius: 8px; }
+        button { padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #218838; }
+        input[type="text"] { padding: 10px; width: 80%; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px;}
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="logo-container">
-        <img src="logo_gladiadores.png" alt="Logo Gladiadores de Cristo">
-    </div>
+    <h1>Portal de Inscripciones</h1>
     
-    <h2>Reporte de Pagos</h2>
+    <div id="cargando">Buscando eventos disponibles...</div>
+    
+    <div id="evento-activo" class="tarjeta-evento">
+        <h2 id="titulo-evento"></h2>
+        <p><strong>Monto de inscripción:</strong> <span id="monto-evento"></span></p>
+        
+        <div id="seccion-busqueda">
+            <p>Ingresa tu C.I. o Nombre Completo para verificar tu registro previo:</p>
+            <input type="text" id="dato-busqueda" placeholder="Ej: 13981853 o Christopher...">
+            <br>
+            <button onclick="verificarUsuario()">Buscar y Continuar</button>
+            <p id="mensaje-error" style="color: red; display: none;">Usuario no encontrado. <a href="#">Regístrate aquí primero</a>.</p>
+        </div>
 
-    <div class="lista-confirmados">
-        <h4>Últimos Aportes Registrados <span id="contadorConfirmados" class="badge-count">0</span></h4>
-        <ul id="ulConfirmados">
-            <li style="color: #666; font-style: italic;">Cargando registros...</li>
-        </ul>
+        <div id="seccion-pago" style="display: none;">
+            <h3>¡Usuario verificado!</h3>
+            <p>Por favor, realiza el pago escaneando el siguiente QR:</p>
+            <img id="qr-evento" class="qr-imagen" src="" alt="QR de Pago">
+            <br>
+            <input type="file" id="comprobante" accept="image/*">
+            <br><br>
+            <button onclick="enviarInscripcion()">Enviar Inscripción</button>
+        </div>
     </div>
 
-    <form id="pagoForm">
-        <div class="section-title">1. Identificación</div>
-        
-        <label>¿Eres miembro registrado en el grupo?</label>
-        <div class="radio-group">
-            <input type="radio" id="tipoGladiador" name="tipoPersona" value="Gladiador" checked onchange="cambiarTipo()"> <label for="tipoGladiador">Sí, soy Gladiador</label>
-            <input type="radio" id="tipoInvitado" name="tipoPersona" value="Invitado" onchange="cambiarTipo()"> <label for="tipoInvitado">No, soy Invitado</label>
-        </div>
+    <script>
+        // 1. REEMPLAZA ESTO CON LA URL QUE TE DIO GOOGLE APPS SCRIPT
+        const URL_SCRIPT = 'https://script.google.com/macros/s/AKfycbyOi2HXtjuOCcDz5cUNHZlJqDm9zsKLWFntp44UkPe7PrSviGb_s4kUZ9HuehgFH90q/exec';
 
-        <div id="divGladiador">
-            <label for="nombreGladiador">Busca tu nombre:</label>
-            <input list="listaNombres" id="nombreGladiador" placeholder="Escribe para buscar tu nombre...">
-            <datalist id="listaNombres"></datalist>
-        </div>
-
-        <div id="divInvitado" style="display: none;">
-            <label for="nombreInvitado">Escribe tu nombre completo:</label>
-            <input type="text" id="nombreInvitado" placeholder="Ej. Carlos Mendoza">
-        </div>
-
-        <div class="section-title">2. Detalles del Pago</div>
-
-        <label for="motivoPago">Motivo del pago o Nombre del Evento:</label>
-        <input type="text" id="motivoPago" required placeholder="Ej. Retiro Espiritual, Cuota Mensual, Churrasco...">
-
-        <label for="montoPago">Monto depositado (Bs):</label>
-        <input type="number" id="montoPago" required min="1" placeholder="Ej. 30">
-
-        <div class="section-title">3. Verificación</div>
-
-        <div class="qr-box">
-            <p style="font-weight: bold; color: var(--primary-red); margin: 0; font-family: 'Cinzel', serif;">ESCANEA EL CÓDIGO QR</p>
-            <p style="margin: 5px 0 0 0; font-size: 14px; color: #666;">Realiza la transferencia desde tu aplicación bancaria.</p>
-            <img src="qr_pago.jpg" alt="Código QR de Pago">
-        </div>
-
-        <label for="comprobante">Sube la captura de pantalla de tu comprobante:</label>
-        <input type="file" id="comprobante" accept="image/*" required>
-
-        <button type="submit" id="btnSubmit">ENVIAR REPORTE DE PAGO</button>
-        <div id="mensaje"></div>
-    </form>
-</div>
-
-<script>
-    // =====================================================================
-    // ¡¡¡ PEGA AQUÍ LA URL DE TU SCRIPT DE PAGOS !!!
-    // =====================================================================
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwBGTP9bJICyZVdqUOL16eEt-4jdikRY6aNnM5CJ7B_DqtBzgK1_Q3qr_9hALY8QpQ/exec";
-
-    window.onload = function() {
-        fetch(scriptURL + "?action=getDatos")
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === "success") {
-                    const datalist = document.getElementById('listaNombres');
-                    data.nombres.forEach(nombre => {
-                        let option = document.createElement('option');
-                        option.value = nombre;
-                        datalist.appendChild(option);
-                    });
-
-                    const ulConfirmados = document.getElementById('ulConfirmados');
-                    const contador = document.getElementById('contadorConfirmados');
-                    ulConfirmados.innerHTML = ""; 
+        // 2. Función que se ejecuta al cargar la página
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch(URL_SCRIPT)
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    document.getElementById('cargando').style.display = 'none';
                     
-                    if(data.confirmados.length > 0) {
-                        contador.innerText = data.confirmados.length;
-                        data.confirmados.reverse().forEach(nombre => {
-                            let li = document.createElement('li');
-                            li.innerText = nombre;
-                            ulConfirmados.appendChild(li);
-                        });
+                    if (datos && datos.nombre) {
+                        // Si hay evento activo, llenamos los datos en el HTML
+                        document.getElementById('evento-activo').style.display = 'block';
+                        document.getElementById('titulo-evento').textContent = datos.nombre;
+                        document.getElementById('monto-evento').textContent = datos.monto;
+                        document.getElementById('qr-evento').src = datos.qr;
                     } else {
-                        ulConfirmados.innerHTML = "<li style='color: #666; font-style: italic; list-style: none;'>Aún no hay registros de pagos.</li>";
+                        // Si no hay evento activo
+                        document.getElementById('cargando').style.display = 'block';
+                        document.getElementById('cargando').textContent = 'No hay eventos activos en este momento.';
                     }
-                }
-            })
-            .catch(err => {
-                document.getElementById('ulConfirmados').innerHTML = "<li style='color: #8B0000;'>Error al cargar los registros. Verifica tu conexión.</li>";
-            });
-    };
+                })
+                .catch(error => {
+                    console.error("Error al cargar el evento:", error);
+                    document.getElementById('cargando').textContent = 'Error de conexión.';
+                });
+        });
 
-    function cambiarTipo() {
-        const esGladiador = document.getElementById('tipoGladiador').checked;
-        document.getElementById('divGladiador').style.display = esGladiador ? 'block' : 'none';
-        document.getElementById('divInvitado').style.display = esGladiador ? 'none' : 'block';
-    }
-
-    document.getElementById('pagoForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const btnSubmit = document.getElementById('btnSubmit');
-        const mensaje = document.getElementById('mensaje');
-        const esGladiador = document.getElementById('tipoGladiador').checked;
-        const nombreFinal = esGladiador ? document.getElementById('nombreGladiador').value : document.getElementById('nombreInvitado').value;
-        const motivo = document.getElementById('motivoPago').value;
-        const monto = document.getElementById('montoPago').value;
-        
-        if (!nombreFinal) {
-            alert("Por favor, ingresa o selecciona tu nombre.");
-            return;
+        // 3. Funciones vacías para el siguiente paso
+        function verificarUsuario() {
+            // Aquí añadiremos la lógica para buscar el C.I. en tu hoja de Google Sheets
+            alert("La conexión de búsqueda se implementará en el siguiente paso.");
         }
 
-        btnSubmit.disabled = true;
-        btnSubmit.innerHTML = "Procesando comprobante... <br><small>Por favor espera</small>";
-        mensaje.style.display = "none";
-
-        const file = document.getElementById('comprobante').files[0];
-        const reader = new FileReader();
-
-        reader.onload = function(event) {
-            const payload = {
-                tipoPersona: esGladiador ? "Gladiador" : "Invitado",
-                nombre: nombreFinal,
-                evento: motivo, // Ahora toma lo que el usuario escribió
-                monto: monto,   // Ahora toma el monto ingresado
-                comprobanteBase64: event.target.result,
-                comprobanteName: file.name
-            };
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(payload),
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if(data.status === "success") {
-                    mensaje.style.display = "block";
-                    mensaje.style.color = "#155724";
-                    mensaje.style.backgroundColor = "#d4edda";
-                    mensaje.innerHTML = "✅ <b>¡Reporte enviado con éxito!</b><br>El aporte para '"+motivo+"' pasará a revisión financiera.";
-                    
-                    // Añadir a la lista visualmente
-                    const ulConfirmados = document.getElementById('ulConfirmados');
-                    const contador = document.getElementById('contadorConfirmados');
-                    let li = document.createElement('li');
-                    li.innerHTML = "<b>" + nombreFinal + "</b> <span style='font-size:12px; margin-left:8px; color:#666;'>(" + motivo + ")</span>";
-                    li.style.backgroundColor = "#fffdf5"; 
-                    ulConfirmados.insertBefore(li, ulConfirmados.firstChild);
-                    contador.innerText = parseInt(contador.innerText) + 1;
-                    
-                    if(ulConfirmados.innerText.includes("Aún no hay")) {
-                        ulConfirmados.removeChild(ulConfirmados.lastChild);
-                    }
-
-                    document.getElementById('pagoForm').reset();
-                    window.scrollTo(0, 0); 
-                } else { throw new Error(data.message); }
-            })
-            .catch(error => {
-                mensaje.style.display = "block";
-                mensaje.style.color = "#721c24";
-                mensaje.style.backgroundColor = "#f8d7da";
-                mensaje.innerText = "⚠️ Error de conexión: " + error.message;
-            })
-            .finally(() => {
-                btnSubmit.disabled = false;
-                btnSubmit.innerText = "ENVIAR REPORTE DE PAGO";
-            });
-        };
-        
-        reader.readAsDataURL(file);
-    });
-</script>
+        function enviarInscripcion() {
+            // Aquí añadiremos la lógica para convertir la imagen y subirla a tu Drive
+            alert("El envío de comprobantes se implementará pronto.");
+        }
+    </script>
 </body>
 </html>
